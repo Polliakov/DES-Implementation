@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 
-namespace DES_Implementation
+namespace DESImplementation
 {
     internal static class Utils
     {

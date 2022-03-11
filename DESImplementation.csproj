@@ -7,8 +7,8 @@
     <ProjectGuid>{81F5F5DE-ACFD-4174-B80E-5E9B2DD7E64D}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>DES_Implementation</RootNamespace>
-    <AssemblyName>DES Implementation</AssemblyName>
+    <RootNamespace>DESImplementation</RootNamespace>
+    <AssemblyName>DESImplementation</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>

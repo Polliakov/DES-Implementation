@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace DES_Implementation
+namespace DESImplementation
 {
     public class MyDES
     {

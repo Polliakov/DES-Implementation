@@ -1,6 +1,6 @@
 ﻿using System.Security.Cryptography;
 
-namespace DES_Implementation
+namespace DESImplementation
 {
     public class DESCbc : SymmetricAlgorithm
     {

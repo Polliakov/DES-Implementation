@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.32126.315
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DES Implementation", "DES Implementation.csproj", "{81F5F5DE-ACFD-4174-B80E-5E9B2DD7E64D}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DESImplementation", "DESImplementation.csproj", "{81F5F5DE-ACFD-4174-B80E-5E9B2DD7E64D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Tests", "Tests\Tests.csproj", "{1F2F9D13-521E-482D-9B65-F8AF4D138BF6}"
 EndProject

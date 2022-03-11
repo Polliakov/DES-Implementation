@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Security.Cryptography;
 
-namespace DES_Implementation
+namespace DESImplementation
 {
     internal class DESCbcEncryptor : ICryptoTransform
     {

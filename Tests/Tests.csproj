@@ -57,9 +57,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\DES Implementation.csproj">
+    <ProjectReference Include="..\DESImplementation.csproj">
       <Project>{81f5f5de-acfd-4174-b80e-5e9b2dd7e64d}</Project>
-      <Name>DES Implementation</Name>
+      <Name>DESImplementation</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />
