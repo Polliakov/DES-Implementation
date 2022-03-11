@@ -15,7 +15,7 @@ namespace DES_Implementation
         public int InputBlockSize => 8;
         public int OutputBlockSize => 8;
         public bool CanTransformMultipleBlocks => false;
-        public bool CanReuseTransform => true;
+        public bool CanReuseTransform => false;
         public enum Mode { Encrypt, Decrypt }
 
         private readonly Mode mode;
@@ -24,7 +24,7 @@ namespace DES_Implementation
 
         public void Dispose()
         {
-            throw new NotImplementedException();
+            Array.Clear(keys48b, 0, keys48b.Length);
         }
 
         public int TransformBlock(byte[] inputBuffer, int inputOffset, int inputCount, byte[] outputBuffer, int outputOffset)

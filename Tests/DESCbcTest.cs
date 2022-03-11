@@ -59,6 +59,7 @@ namespace Tests
                 cs.Read(cipherRef, 0, cipherRef.Length);
             }
             desRef.Clear();
+            transform.Dispose();
 
             // Assert
             for (int i = 0; i < 24; i++)
@@ -68,8 +69,8 @@ namespace Tests
         private byte[] DESCbcEncrypt(byte[] plainText, byte[] key, byte[] iv)
         {
             using (var des = new DESCbc())
+            using (var transform = des.CreateEncryptor(key, iv))
             {
-                var transform = des.CreateEncryptor(key, iv);
                 var encrypted = new byte[24];
                 using (var outMs = new MemoryStream(encrypted, true))
                 using (var ms = new MemoryStream(plainText, false))
@@ -84,8 +85,8 @@ namespace Tests
         private byte[] DESCbcDecrypt(byte[] plainText, byte[] key, byte[] iv)
         {
             using (var des = new DESCbc())
+            using (var transform = des.CreateDecryptor(key, iv))
             {
-                var transform = des.CreateDecryptor(key, iv);
                 var decrypted = new byte[24];
                 using (var ms = new MemoryStream(plainText, false))
                 using (var cs = new CryptoStream(ms, transform, CryptoStreamMode.Read))

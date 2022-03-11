@@ -4,8 +4,6 @@ namespace DES_Implementation
 {
     internal static class Utils
     {
-        public static RandomNumberGenerator RandomNumberGenerator = RandomNumberGenerator.Create();
-
         public static byte ExternalBits(byte block6b)
         {
             return (byte)(block6b >> 6 & 0x02 | block6b >> 2 & 0x01);

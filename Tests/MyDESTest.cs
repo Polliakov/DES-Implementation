@@ -51,6 +51,7 @@ namespace Tests
                 cs.Read(cipherRef, 0, 8);
             }
             desRef.Clear();
+            transform.Dispose();
 
             // Assert
             for (int i = 0; i < 8; i++)

@@ -1,9 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Security.Cryptography;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DES_Implementation
 {
@@ -17,6 +12,11 @@ namespace DES_Implementation
 
         public byte[] TransformBlock(byte[] from, Mode mode, byte[] key)
         {
+            if (from is null || key is null)
+                throw new ArgumentNullException("Null arguments");
+            if (from.Length != 8 || key.Length != 8)
+                throw new ArgumentException("Invalid arguments");
+
             ulong[] keys48b = KeyExpansion(key);
 
             Utils.Split64bitsTo32Bits(

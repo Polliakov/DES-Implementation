@@ -47,27 +47,37 @@ namespace DES_Implementation
         public override PaddingMode Padding
         {
             get => PaddingValue;
-            //set
-            //{
-            //    if (value != PaddingMode.Zeros)
-            //        throw new CryptographicException("Supports only zeros padding mode");
-            //    PaddingValue = value;
-            //}
+            set
+            {
+                if (value != PaddingMode.Zeros)
+                    throw new CryptographicException("Supports only zeros padding mode");
+                PaddingValue = value;
+            }
         }
         public override CipherMode Mode
         {
             get => ModeValue;
-            //set
-            //{
-            //    if (value != CipherMode.CBC)
-            //        throw new CryptographicException("Supports only CBC cipher mode");
-            //    ModeValue = value;
-            //}
+            set
+            {
+                if (value != CipherMode.CBC)
+                    throw new CryptographicException("Supports only CBC cipher mode");
+                ModeValue = value;
+            }
+        }
+
+        public override ICryptoTransform CreateDecryptor()
+        {
+            return NewEncrypter(DESCbcEncryptor.Mode.Decrypt);
         }
 
         public override ICryptoTransform CreateDecryptor(byte[] rgbKey, byte[] rgbIV)
         {
             return NewEncrypter(rgbKey, rgbIV, DESCbcEncryptor.Mode.Decrypt);
+        }
+
+        public override ICryptoTransform CreateEncryptor()
+        {
+            return NewEncrypter(DESCbcEncryptor.Mode.Encrypt);
         }
 
         public override ICryptoTransform CreateEncryptor(byte[] rgbKey, byte[] rgbIV)
@@ -78,17 +88,19 @@ namespace DES_Implementation
         public override void GenerateIV()
         {
             IVValue = new byte[8];
-            Utils.RandomNumberGenerator.GetBytes(IVValue);
-            while (IsWeakKey(IVValue) || IsSemiWeakKey(IVValue))
-                Utils.RandomNumberGenerator.GetBytes(IVValue);
+            using (var rand = RandomNumberGenerator.Create())
+                rand.GetBytes(IVValue);
         }
 
         public override void GenerateKey()
         {
             KeyValue = new byte[8];
-            Utils.RandomNumberGenerator.GetBytes(KeyValue);
-            while (IsWeakKey(KeyValue) || IsSemiWeakKey(KeyValue))
-                Utils.RandomNumberGenerator.GetBytes(KeyValue);
+            using (var rand = RandomNumberGenerator.Create())
+            {
+                rand.GetBytes(KeyValue);
+                while (IsWeakKey(KeyValue) || IsSemiWeakKey(KeyValue))
+                    rand.GetBytes(KeyValue);
+            }
         }
 
         public static bool IsWeakKey(byte[] rgbKey)
@@ -129,6 +141,11 @@ namespace DES_Implementation
                 default:
                     return false;
             }
+        }
+
+        private ICryptoTransform NewEncrypter(DESCbcEncryptor.Mode mode)
+        {
+            return new DESCbcEncryptor(KeyValue, IVValue, mode);
         }
 
         private ICryptoTransform NewEncrypter(byte[] rgbKey, byte[] rgbIV, DESCbcEncryptor.Mode mode)
