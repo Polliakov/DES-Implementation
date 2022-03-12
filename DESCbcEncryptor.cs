@@ -34,14 +34,11 @@ namespace DESImplementation
                 throw new ArgumentNullException(nameof(inputBuffer));
             if (outputBuffer == null)
                 throw new ArgumentNullException(nameof(outputBuffer));
-            if (inputOffset != 0)
-                throw new ArgumentOutOfRangeException("Argument invalid offset length");
             if (inputCount != InputBlockSize)
-                throw new ArgumentException("Argument invalid value");
-            #endregion
-
-            if (inputCount == 0)
-                return 0;
+                throw new ArgumentException("Invalid input count");
+            if (inputBuffer.Length - inputCount < inputOffset || inputOffset < 0)
+                throw new ArgumentException("Invalid offset length");
+            #endregion      
 
             var block = new byte[InputBlockSize];
             Buffer.BlockCopy(inputBuffer, inputOffset, block, 0, inputCount);
